@@ -200,6 +200,8 @@ class LogoCode:
         self.start_time = None
         self._disable_help = False
 
+        self.value_blocks_to_update = {}
+
         self.body_height = int((self.tw.canvas.height / 40) * self.tw.scale)
 
         self.scale = DEFAULT_SCALE
@@ -1094,6 +1096,8 @@ class LogoCode:
                     '.', self.tw.decimal_point)
             else:
                 valstring = str(value)
+            if name not in self.value_blocks_to_update:
+                return
             for block in self.value_blocks_to_update[name]:
                 if label is None:
                     block.spr.set_label(
